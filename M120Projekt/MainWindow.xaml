@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Neuen Song hinzufügen" MinHeight="510" MinWidth="600">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Width="100" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" >
+            <Button Content="Neu" Margin="5" IsEnabled="False"></Button>
+            <Button Content="Bearbeiten" Margin="5" IsEnabled="False"></Button>
+            <Button Content="Löschen" Margin="5" IsEnabled="False"></Button>
+            <Button Content="Zurück" Margin="5"></Button>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right">
+            <local:Song_Einzelansicht Margin="0"/>
+        </StackPanel>
+
+    </DockPanel>
+
 </Window>

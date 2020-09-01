@@ -53,7 +53,7 @@ namespace M120Projekt
         public static void DemoADelete()
         {
             Debug.Print("--- DemoADelete ---");
-            Data.Song.LesenID(2).Loeschen();
+            // Data.Song.LesenID(2).Loeschen();
             Debug.Print("Artikel mit Id 2 gelöscht");
         }
         #endregion

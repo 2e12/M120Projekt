@@ -18,5 +18,10 @@ namespace M120Projekt
             APIDemo.DemoARead();
             APIDemo.DemoADelete();
         }
+
+        private void Song_Einzelansicht_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
