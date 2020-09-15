@@ -65,6 +65,9 @@
     <Compile Include="Song_Einzelansicht.xaml.cs">
       <DependentUpon>Song_Einzelansicht.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Song_List.xaml.cs">
+      <DependentUpon>Song_List.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +84,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Song_Einzelansicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Song_List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

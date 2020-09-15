@@ -9,13 +9,18 @@
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="100" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" >
-            <Button Content="Neu" Margin="5" IsEnabled="False"></Button>
-            <Button Content="Bearbeiten" Margin="5" IsEnabled="False"></Button>
-            <Button Content="Löschen" Margin="5" IsEnabled="False"></Button>
-            <Button Content="Zurück" Margin="5"></Button>
+            <Button x:Name="NewButton" Content="Neu" Margin="5" IsEnabled="False" Click="NewEntry"></Button>
+            <Button x:Name="EditButton" Content="Bearbeiten" Margin="5" IsEnabled="False" Click="EditEntry"></Button>
+            <Button x:Name="DeleteButton" Content="Löschen" Margin="5" IsEnabled="False" Click="DeleteEntry"></Button>
+            <Button x:Name="BackButton" Content="Zurück" Margin="5, 20, 5, 5" Click="Return"></Button>
+            <Button x:Name="SaveButton" Content="Speichern" Margin="5, 5, 5, 5" Click="SaveEntry"></Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Right">
-            <local:Song_Einzelansicht Margin="0"/>
+            <local:Song_Einzelansicht x:Name="EntryEditor" Visibility="Collapsed" Margin="0"/>
+            <ListBox x:Name="Entries" Margin="0" SelectionChanged="Entries_SelectionChanged">
+                <ListBoxItem Content="Hallo"></ListBoxItem>
+                <ListBoxItem Content="Welt"></ListBoxItem>
+            </ListBox>
         </StackPanel>
 
     </DockPanel>

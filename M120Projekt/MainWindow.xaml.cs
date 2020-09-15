@@ -7,6 +7,7 @@ namespace M120Projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        State state = State.Empty;
         public MainWindow()
         {
             InitializeComponent();
@@ -17,11 +18,87 @@ namespace M120Projekt
             APIDemo.DemoAUpdate();
             APIDemo.DemoARead();
             APIDemo.DemoADelete();
+
+            this.ChangeState(State.Empty);
         }
 
-        private void Song_Einzelansicht_Loaded(object sender, RoutedEventArgs e)
+        private void ChangeState(State newstate) {
+            this.state = newstate;
+            this.SetDefaultState();
+            if (this.state == State.Empty) {
+                Entries.UnselectAll();
+                NewButton.IsEnabled = true;
+                Entries.Visibility = Visibility.Visible;
+            }
+            if (this.state == State.Sclected)
+            {
+                NewButton.IsEnabled = true;
+                EditButton.IsEnabled = true;
+                DeleteButton.IsEnabled = true;
+                Entries.Visibility = Visibility.Visible;
+                if (Entries.SelectedItems.Count < 1) {
+                    this.ChangeState(State.Empty);
+                }
+            }
+            if (this.state == State.New)
+            {
+                BackButton.IsEnabled = true;
+                EntryEditor.Visibility = Visibility.Visible;
+                SaveButton.IsEnabled = true;
+            }
+            if (this.state == State.Edit)
+            {
+                BackButton.IsEnabled = true;
+                EntryEditor.Visibility = Visibility.Visible;
+                SaveButton.IsEnabled = true;
+            }
+        }
+
+        private void SetDefaultState() {
+            EntryEditor.Visibility = Visibility.Collapsed;
+            Entries.Visibility = Visibility.Collapsed;
+            NewButton.IsEnabled = false;
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
+            BackButton.IsEnabled = false;
+            SaveButton.IsEnabled = false;
+        }
+
+        private void NewEntry(object sender, RoutedEventArgs e)
         {
-
+            ChangeState(State.New);
         }
+
+        private void Return(object sender, RoutedEventArgs e)
+        {
+            ChangeState(State.Empty);
+        }
+
+        private void EditEntry(object sender, RoutedEventArgs e)
+        {
+            ChangeState(State.Edit);
+        }
+
+        private void DeleteEntry(object sender, RoutedEventArgs e)
+        {
+            ChangeState(State.Empty);
+        }
+
+        private void SaveEntry(object sender, RoutedEventArgs e)
+        {
+            ChangeState(State.Empty);
+        }
+
+        private void Entries_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ChangeState(State.Sclected);
+        }
+    }
+    enum State
+    {
+        Empty,
+        Sclected,
+        Edit,
+        New
     }
 }
