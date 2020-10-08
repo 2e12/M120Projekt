@@ -22,7 +22,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBox x:Name="TitleBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"/>
+        <TextBox x:Name="TitleBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" TextChanged="TitleBox_TextChanged"/>
         <Label Content="Title" Margin="0,0,0,0" VerticalAlignment="Center"/>
 
         <TextBox x:Name="ArtistBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Row="1"/>

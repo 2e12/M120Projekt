@@ -86,7 +86,10 @@ namespace M120Projekt
 
         private void SaveEntry(object sender, RoutedEventArgs e)
         {
-            ChangeState(State.Empty);
+            if (EntryEditor.IsValid())
+            {
+                ChangeState(State.Empty);
+            }
         }
 
         private void Entries_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
