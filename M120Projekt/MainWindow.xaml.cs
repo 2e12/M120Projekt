@@ -43,6 +43,7 @@ namespace M120Projekt
             if (this.state == State.New)
             {
                 BackButton.IsEnabled = true;
+                EntryEditor.ResetValues();
                 EntryEditor.Visibility = Visibility.Visible;
                 SaveButton.IsEnabled = true;
             }
@@ -71,6 +72,12 @@ namespace M120Projekt
 
         private void Return(object sender, RoutedEventArgs e)
         {
+            if (EntryEditor.unsaved) {
+                if (MessageBox.Show( "Wollen Sie die ungespeicherte Änderungen verwerfen?", "Ungespeicherte Änderungen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
             ChangeState(State.Empty);
         }
 

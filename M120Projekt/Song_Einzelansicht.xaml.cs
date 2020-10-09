@@ -21,6 +21,13 @@ namespace M120Projekt
     /// </summary>
     public partial class Song_Einzelansicht : UserControl
     {
+        bool _unsaved = false;
+
+        public bool unsaved
+        {
+            get { return _unsaved; }
+        }
+
         public Song_Einzelansicht()
         {
             InitializeComponent();
@@ -54,9 +61,39 @@ namespace M120Projekt
             return isValid;
         }
 
-        private void TitleBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        public void ResetValues() {
+            TitleBox.Text = "";
+            ArtistBox.Text = "";
+            ReleasedBox.SelectedDate = null;
+            GerneBox.SelectedIndex = 4;
+            LengthBox.Text = "3:10";
+            FavoritBox.Content = false;
+            YouTubeIdBox.Text = "";
+            _unsaved = false;
+        }
 
+        private void DataChanged() {
+            _unsaved = true;
+        }
+
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataChanged();
+        }
+
+        private void ReleasedBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataChanged();
+        }
+
+        private void GerneBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataChanged();
+        }
+
+        private void TextChanged(object sender, RoutedEventArgs e)
+        {
+            DataChanged();
         }
     }
 }
