@@ -6,31 +6,20 @@
              xmlns:local="clr-namespace:M120Projekt"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBox x:Name="TitleBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextChanged="TextChanged"/>
+    <StackPanel Background="White" Margin="0,0,0,-304">
+
         <Label Content="Title" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="TitleBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextChanged="TextChanged"/>
+        <Label x:Name="TitelError" Content="Der Titel muss zwischen 1-128 Zeichen lang sein." Margin="10,0,10,5" VerticalAlignment="Center" Foreground="#FFE03434"/>
 
-        <TextBox x:Name="ArtistBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="1" TextChanged="TextChanged"/>
         <Label Content="Künstler" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBox x:Name="ArtistBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="1" TextChanged="TextChanged"/>
+        <Label x:Name="ArtistError" Content="Der Künstler muss zwischen 1-128 Zeichen lang sein." Margin="10,0,10,5" VerticalAlignment="Center" Foreground="#FFE03434"/>
 
-        <DatePicker x:Name="ReleasedBox" Grid.Column="1" Margin="10,5,10,5"  Text="TextBox" VerticalAlignment="Center" Grid.Row="2" SelectedDateChanged="ReleasedBox_SelectedDateChanged" />
         <Label Content="Erschienen" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="2"/>
+        <DatePicker x:Name="ReleasedBox" Grid.Column="1" Margin="10,5,10,5"  Text="TextBox" VerticalAlignment="Center" Grid.Row="2" SelectedDateChanged="ReleasedBox_SelectedDateChanged" />
 
+        <Label Content="Gerne" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="3"/>
         <ComboBox x:Name="GerneBox" Grid.Column="1" Grid.Row="3" Margin="10,5,10,5"  Text="TextBox" VerticalAlignment="Center" SelectionChanged="GerneBox_SelectionChanged">
             <ComboBoxItem>Pop</ComboBoxItem>
             <ComboBoxItem>Rock</ComboBoxItem>
@@ -38,22 +27,25 @@
             <ComboBoxItem>Jazz</ComboBoxItem>
             <ComboBoxItem IsSelected="True">Sonstiges</ComboBoxItem>
         </ComboBox>
-        <Label Content="Gerne" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="3"/>
 
-        <TextBox x:Name="LengthBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="3:10" VerticalAlignment="Center" Grid.Row="4" TextChanged="TextChanged"/>
         <Label Content="Länge" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBox x:Name="LengthBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="3:10" VerticalAlignment="Center" Grid.Row="4" TextChanged="TextChanged"/>
+        <Label x:Name="LengthError" Content="Die Länge muss im Format mm:ss angegeben werden." Margin="10,0,10,5" VerticalAlignment="Center" Foreground="#FFE03434"/>
 
-        <CheckBox Content="Ja" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Checked="TextChanged"/>
-        <Label x:Name="FavoritBox" Content="Favorit" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="5"/>
+        <Label Content="Favorit" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="5"/>
+        <CheckBox x:Name="FavoritBox" Content="Ja" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,50" Grid.Row="5" VerticalAlignment="Top" Checked="TextChanged"/>
 
-        <TextBox x:Name="YouTubeIdBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="7" TextChanged="TextChanged"/>
         <Label Content="YouTube ID" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Row="7"/>
-        
+        <TextBox x:Name="YouTubeIdBox" Grid.Column="1" Margin="10,5,10,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="7" TextChanged="TextChanged"/>
+        <Label x:Name="YouTubeIdError" Content="Die YouTubeID muss 10 Zeichen lang sein." Margin="10,0,10,5" VerticalAlignment="Center" Foreground="#FFE03434"/>
+
+        <Label Content="(Placeholder for YouTube Video playback)" VerticalAlignment="Center"/>
         <Rectangle MinHeight="200" Grid.Column="1" Fill="#FF555555" Margin="10" Grid.Row="8" Stroke="Black"/>
-        <Label Content="Placeholder for YouTube Video playback" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" Foreground="White"/>
+        
 
 
 
 
-    </Grid>
+
+    </StackPanel>
 </UserControl>

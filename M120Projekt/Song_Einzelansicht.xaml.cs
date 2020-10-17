@@ -31,43 +31,53 @@ namespace M120Projekt
         public Song_Einzelansicht()
         {
             InitializeComponent();
+            HideErrors();
+        }
+
+        private void HideErrors() {
+            TitelError.Visibility = Visibility.Collapsed;
+            ArtistError.Visibility = Visibility.Collapsed;
+            LengthError.Visibility = Visibility.Collapsed;
+            YouTubeIdError.Visibility = Visibility.Collapsed;
         }
 
         public bool IsValid() {
             bool isValid = true;
+            HideErrors();
             if (1 > this.TitleBox.Text.Length | this.TitleBox.Text.Length > 128) {
                 isValid = false;
+                TitelError.Visibility = Visibility.Visible;
             }
 
             if (1 > this.ArtistBox.Text.Length | this.ArtistBox.Text.Length > 128)
             {
                 isValid = false;
+                ArtistError.Visibility = Visibility.Visible;
             }
 
             if (this.LengthBox.Text != "" & !Regex.IsMatch(this.LengthBox.Text, "[0-9]{1,2}:[0-5][0-9]"))
             {
                 isValid = false;
+                LengthError.Visibility = Visibility.Visible;
             }
 
             if (this.YouTubeIdBox.Text != "" & this.YouTubeIdBox.Text.Length != 10) 
             {
                 isValid = false;
-            }
-
-            if (isValid) {
-                Console.WriteLine("VALID");
+                YouTubeIdError.Visibility = Visibility.Visible;
             }
 
             return isValid;
         }
 
         public void ResetValues() {
+            HideErrors();
             TitleBox.Text = "";
             ArtistBox.Text = "";
             ReleasedBox.SelectedDate = null;
             GerneBox.SelectedIndex = 4;
             LengthBox.Text = "3:10";
-            FavoritBox.Content = false;
+            FavoritBox.IsChecked = false;
             YouTubeIdBox.Text = "";
             _unsaved = false;
         }
