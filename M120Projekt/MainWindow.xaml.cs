@@ -25,6 +25,9 @@ namespace M120Projekt
         private void ChangeState(State newstate) {
             this.state = newstate;
             this.SetDefaultState();
+            if (this.state == State.Empty || this.state == State.Sclected) {
+                this.Title = "Musik Bibliothek";
+            }
             if (this.state == State.Empty) {
                 Entries.UnselectAll();
                 NewButton.IsEnabled = true;
@@ -46,12 +49,14 @@ namespace M120Projekt
                 EntryEditor.ResetValues();
                 EntryEditor.Visibility = Visibility.Visible;
                 SaveButton.IsEnabled = true;
+                this.Title = "Neuer Song erstellen";
             }
             if (this.state == State.Edit)
             {
                 BackButton.IsEnabled = true;
                 EntryEditor.Visibility = Visibility.Visible;
                 SaveButton.IsEnabled = true;
+                this.Title = "Song bearbeiten";
             }
         }
 
