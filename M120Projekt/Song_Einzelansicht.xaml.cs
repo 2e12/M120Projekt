@@ -41,6 +41,17 @@ namespace M120Projekt
             YouTubeIdError.Visibility = Visibility.Collapsed;
         }
 
+        public void loadSong(Data.Song song) {
+            TitleBox.Text = song.Title;
+            ArtistBox.Text = song.Artist;
+            ReleasedBox.SelectedDate = song.Erschienen;
+            GerneBox.Text = song.Gerne;
+            LengthBox.Text = song.Laenge;
+            FavoritBox.IsChecked = song.Favorit;
+            YouTubeIdBox.Text = song.YouTubeID;
+            _unsaved = false;
+        }
+
         public bool IsValid() {
             bool isValid = true;
             HideErrors();
@@ -70,7 +81,7 @@ namespace M120Projekt
             return isValid;
         }
 
-        public void ResetValues() {
+        public void ResetForm() {
             HideErrors();
             TitleBox.Text = "";
             ArtistBox.Text = "";

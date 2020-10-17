@@ -17,13 +17,10 @@ namespace M120Projekt.Data
         public String Artist { get; set; }
         [Required]
         public String Gerne { get; set; }
-        [Required]
         public DateTime Erschienen { get; set; }
         [Required]
         public Boolean Favorit { get; set; }
-        [Required]
-        public float Laenge { get; set; }
-        [Required]
+        public String Laenge { get; set; }
         public String YouTubeID { get; set; }
         #endregion
         #region Applikationsschicht
@@ -96,7 +93,7 @@ namespace M120Projekt.Data
         }
         public override string ToString()
         {
-            return SongID.ToString(); // Für bessere Coded UI Test Erkennung
+            return Title + " - " + Artist; // Für bessere Coded UI Test Erkennung
         }
         #endregion
     }

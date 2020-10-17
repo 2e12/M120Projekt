@@ -17,7 +17,7 @@ namespace M120Projekt
             klasseA1.Artist = "Artist";
             klasseA1.Favorit = true;
             klasseA1.Gerne = "Pop";
-            klasseA1.Laenge = 1.5f;
+            klasseA1.Laenge = "";
             klasseA1.YouTubeID = "123";
 
             Int64 klasseA1Id = klasseA1.Erstellen();
@@ -25,7 +25,7 @@ namespace M120Projekt
         }
         public static void DemoACreateKurz()
         {
-            Data.Song klasseA2 = new Data.Song { Title = "Artikel 2", Favorit = true, Erschienen = DateTime.Today, Artist = "Artist", Gerne = "Pop", Laenge = 1.6f, YouTubeID = "345"};
+            Data.Song klasseA2 = new Data.Song { Title = "Artikel 2", Favorit = true, Erschienen = DateTime.Today, Artist = "Artist", Gerne = "Pop", Laenge = "", YouTubeID = "345"};
             Int64 klasseA2Id = klasseA2.Erstellen();
             Debug.Print("Artikel erstellt mit Id:" + klasseA2Id);
         }

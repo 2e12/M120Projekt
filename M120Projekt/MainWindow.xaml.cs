@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace M120Projekt
 {
@@ -8,17 +10,11 @@ namespace M120Projekt
     public partial class MainWindow : Window
     {
         State state = State.Empty;
+        Data.Song song = null;
         public MainWindow()
         {
             InitializeComponent();
-            // Aufruf diverse APIDemo Methoden
-            APIDemo.DemoACreate();
-            APIDemo.DemoACreateKurz();
-            APIDemo.DemoARead();
-            APIDemo.DemoAUpdate();
-            APIDemo.DemoARead();
-            APIDemo.DemoADelete();
-
+            LoadSongs();
             this.ChangeState(State.Empty);
         }
 
@@ -29,6 +25,7 @@ namespace M120Projekt
                 this.Title = "Musik Bibliothek";
             }
             if (this.state == State.Empty) {
+                this.song = null;
                 Entries.UnselectAll();
                 NewButton.IsEnabled = true;
                 Entries.Visibility = Visibility.Visible;
@@ -46,7 +43,7 @@ namespace M120Projekt
             if (this.state == State.New)
             {
                 BackButton.IsEnabled = true;
-                EntryEditor.ResetValues();
+                EntryEditor.ResetForm();
                 EntryEditor.Visibility = Visibility.Visible;
                 SaveButton.IsEnabled = true;
                 this.Title = "Neuer Song erstellen";
@@ -54,6 +51,7 @@ namespace M120Projekt
             if (this.state == State.Edit)
             {
                 BackButton.IsEnabled = true;
+                EntryEditor.loadSong(this.song);
                 EntryEditor.Visibility = Visibility.Visible;
                 SaveButton.IsEnabled = true;
                 this.Title = "Song bearbeiten";
@@ -78,7 +76,7 @@ namespace M120Projekt
         private void Return(object sender, RoutedEventArgs e)
         {
             if (EntryEditor.unsaved) {
-                if (MessageBox.Show( "Wollen Sie die ungespeicherte Änderungen verwerfen?", "Ungespeicherte Änderungen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                if (MessageBox.Show("Wollen Sie die ungespeicherte Änderungen verwerfen?", "Ungespeicherte Änderungen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 {
                     return;
                 }
@@ -88,19 +86,55 @@ namespace M120Projekt
 
         private void EditEntry(object sender, RoutedEventArgs e)
         {
+            Data.Song item = (Data.Song)Entries.SelectedItem;
+            this.song = item;
             ChangeState(State.Edit);
         }
 
         private void DeleteEntry(object sender, RoutedEventArgs e)
         {
+            Data.Song item = (Data.Song) Entries.SelectedItem;
+            item.Loeschen();
             ChangeState(State.Empty);
+            LoadSongs();
         }
 
         private void SaveEntry(object sender, RoutedEventArgs e)
         {
             if (EntryEditor.IsValid())
             {
+                bool create = this.song == null;
+                if (create) {
+                    this.song = new Data.Song();
+                }
+                this.song.Title = EntryEditor.TitleBox.Text;
+                this.song.Erschienen = EntryEditor.ReleasedBox.DisplayDate;
+                this.song.Artist = EntryEditor.ArtistBox.Text;
+                this.song.Favorit = true;
+                this.song.Gerne = EntryEditor.GerneBox.Text;
+                this.song.Laenge = EntryEditor.LengthBox.Text;
+                this.song.YouTubeID = EntryEditor.YouTubeIdBox.Text;
+                if (create)
+                {
+                    this.song.Erstellen();
+                }
+                else {
+                    this.song.Aktualisieren();
+                }
                 ChangeState(State.Empty);
+                LoadSongs();
+            }
+        }
+
+        private void LoadSongs() {
+            Entries.Items.Clear();
+            List<Data.Song> songs = Data.Song.LesenAlle();
+            foreach (Data.Song song in songs)
+            {
+                if (!Entries.Items.Contains(song))
+                {
+                    Entries.Items.Add(song);
+                }
             }
         }
 
