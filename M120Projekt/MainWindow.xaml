@@ -10,19 +10,34 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="100" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" >
             <Button x:Name="NewButton" Margin="5" IsEnabled="False" Click="NewEntry">
-                <AccessText>_New</AccessText>
+                <StackPanel>
+                    <Image Height="32" Source="list-add-4.ico" Stretch="Fill" Width="32"/>
+                    <AccessText>_New</AccessText>
+                </StackPanel>
             </Button>
             <Button x:Name="EditButton" Margin="5" IsEnabled="False" Click="EditEntry">
-                <AccessText>_Bearbeiten</AccessText>
+                <StackPanel>
+                    <Image Height="32" Source="edit-4.ico" Stretch="Fill" Width="32"/>
+                    <AccessText>_Bearbeiten</AccessText>
+                </StackPanel>
             </Button>
             <Button x:Name="DeleteButton" Margin="5" IsEnabled="False" Click="DeleteEntry">
-                <AccessText>_Löschen</AccessText>
+                <StackPanel>
+                    <Image Height="32" Source="edit-delete-2.ico" Stretch="Fill" Width="32"/>
+                    <AccessText>_Löschen</AccessText>
+                </StackPanel>
             </Button>
             <Button x:Name="BackButton" Margin="5, 20, 5, 5" Click="Return">
-                <AccessText>_Zurück</AccessText>
+                <StackPanel>
+                    <Image Height="32" Source="draw-arrow-back.ico" Stretch="Fill" Width="32"/>
+                    <AccessText>_Zurück</AccessText>
+                </StackPanel>
             </Button>
             <Button x:Name="SaveButton" Margin="5, 5, 5, 5" Click="SaveEntry">
-                <AccessText>_Speichern</AccessText>
+                <StackPanel>
+                    <Image Height="32" Source="document-save-2.ico" Stretch="Fill" Width="32"/>
+                    <AccessText>_Speichern</AccessText>
+                </StackPanel>
             </Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Right">

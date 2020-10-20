@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>irc-voice.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -121,6 +124,29 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="document-save-5.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="draw-arrow-back.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="edit-delete-2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="edit-6.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="edit-4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="list-add-4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="document-save-2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="irc-voice.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
