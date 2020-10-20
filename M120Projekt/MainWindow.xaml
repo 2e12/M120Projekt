@@ -17,10 +17,18 @@
         </StackPanel>
         <StackPanel DockPanel.Dock="Right">
             <local:Song_Einzelansicht x:Name="EntryEditor" Visibility="Collapsed" Margin="0"/>
-            <ListBox x:Name="Entries" Margin="0" SelectionChanged="Entries_SelectionChanged">
-                <ListBoxItem Content="Hallo"></ListBoxItem>
-                <ListBoxItem Content="Welt"></ListBoxItem>
-            </ListBox>
+            <DataGrid x:Name="SongList" 
+                      ItemsSource="{Binding}" 
+                      AutoGenerateColumns="False" 
+                      SelectionMode="Single" 
+                      IsReadOnly="True" 
+                      SelectionChanged="SongList_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Titel" Width="*" Binding="{Binding Title}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Künstler" Width="*" Binding="{Binding Artist}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="★" Width="25" Binding="{Binding Favorit}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
 
     </DockPanel>

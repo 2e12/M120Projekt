@@ -26,17 +26,17 @@ namespace M120Projekt
             }
             if (this.state == State.Empty) {
                 this.song = null;
-                Entries.UnselectAll();
+                SongList.UnselectAll();
                 NewButton.IsEnabled = true;
-                Entries.Visibility = Visibility.Visible;
+                SongList.Visibility = Visibility.Visible;
             }
             if (this.state == State.Sclected)
             {
                 NewButton.IsEnabled = true;
                 EditButton.IsEnabled = true;
                 DeleteButton.IsEnabled = true;
-                Entries.Visibility = Visibility.Visible;
-                if (Entries.SelectedItems.Count < 1) {
+                SongList.Visibility = Visibility.Visible;
+                if (SongList.SelectedItems.Count < 1) {
                     this.ChangeState(State.Empty);
                 }
             }
@@ -60,7 +60,7 @@ namespace M120Projekt
 
         private void SetDefaultState() {
             EntryEditor.Visibility = Visibility.Collapsed;
-            Entries.Visibility = Visibility.Collapsed;
+            SongList.Visibility = Visibility.Collapsed;
             NewButton.IsEnabled = false;
             EditButton.IsEnabled = false;
             DeleteButton.IsEnabled = false;
@@ -84,17 +84,20 @@ namespace M120Projekt
             ChangeState(State.Empty);
         }
 
+        public Data.Song GetSelectedSong() {
+            Data.Song song = (Data.Song)SongList.SelectedItem;
+            return song;
+        }
+
         private void EditEntry(object sender, RoutedEventArgs e)
         {
-            Data.Song item = (Data.Song)Entries.SelectedItem;
-            this.song = item;
+            this.song = GetSelectedSong();
             ChangeState(State.Edit);
         }
 
         private void DeleteEntry(object sender, RoutedEventArgs e)
         {
-            Data.Song item = (Data.Song) Entries.SelectedItem;
-            item.Loeschen();
+            GetSelectedSong().Loeschen();
             ChangeState(State.Empty);
             LoadSongs();
         }
@@ -127,18 +130,15 @@ namespace M120Projekt
         }
 
         private void LoadSongs() {
-            Entries.Items.Clear();
-            List<Data.Song> songs = Data.Song.LesenAlle();
-            foreach (Data.Song song in songs)
-            {
-                if (!Entries.Items.Contains(song))
-                {
-                    Entries.Items.Add(song);
-                }
-            }
+            SongList.ItemsSource = Data.Song.LesenAlle();
         }
 
         private void Entries_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ChangeState(State.Sclected);
+        }
+
+        private void SongList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             ChangeState(State.Sclected);
         }
